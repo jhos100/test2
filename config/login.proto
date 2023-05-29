@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package User;
+
+message UserTokenRequest {
+    string token = 1;
+}
+
+message AdminTokenRequest {
+    string token = 1;
+}
+
+message CreateUserRequest {
+    string username = 1;
+    string password = 2;
+    string email = 3;
+}
+
+message UpdateUserTokenRequest {
+    string token = 1;
+}
+
+message DeleteUserTokenRequest {
+    string token = 1;
+}
+
+message UserResponse {
+    bool status = 1;
+    string username = 2;
+    string email = 3;
+}
+
+message ListUserResponse {
+    string message = 1;
+}
+
+message CreateUserResponse {
+    bool status = 1;
+    string message = 2;
+}
+
+message UpdateuserTokenResponse {
+    bool status = 1;
+    string message = 2;
+}
+
+message DeleteUserTokenResponse {
+    bool status = 1;
+    string message = 2;
+}
+
+message DeleteUsersResponse {
+    bool status = 1;
+    string message = 2;
+}
+
+service UserCrud {
+    rpc GetUser (UserTokenRequest) returns (UserResponse) {}
+    rpc ListUsers (AdminTokenRequest) returns (ListUserResponse) {}
+    rpc CreateUser (CreateUserRequest) returns (CreateUserResponse) {}
+    rpc UpdateUser (UpdateUserTokenRequest) returns (UpdateuserTokenResponse) {}
+    rpc DeleteUser (DeleteUserTokenRequest) returns (DeleteUserTokenResponse) {}
+    rpc DeleteUsers (AdminTokenRequest) returns (DeleteUsersResponse) {}
+}
